@@ -1,21 +1,12 @@
-# week02-day04-lab
+* Tasks
+The following tasks must be completed:
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+* [x] Responsive for any screen (desktop, laptop, tablet, phone)
+* [x] Uses only Grid for main layout
+* [x] Uses flexbox for positioning inside grid-items
+* [x] All colors are used through CSS Variables
+* [ ] Deploy website to Netlify
+* Bonus tasks:
+The following tasks are bonus tasks:
+* [x] Retrieve data from the external api service (http://api.openweathermap.org/data/2.5/find?q=Stockholm&units=metric&appid=dfe15a41201d660911d013203832e676) and display it.
+* [ ] Add one more row in the grid and make navigation: Stockholm, Hanoi, Paris, London, Beijing. Can you display their weather as well?
