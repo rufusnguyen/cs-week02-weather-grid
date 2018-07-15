@@ -4,7 +4,7 @@ The following tasks must be completed:
 * [x] Uses only Grid for main layout
 * [x] Uses flexbox for positioning inside grid-items
 * [x] All colors are used through CSS Variables
-* [ ] Deploy website to Netlify
+* [x] Deploy website to Netlify: https://eloquent-sammet-a23697.netlify.com/
 
 # Bonus tasks:
 The following tasks are bonus tasks:
