@@ -1,0 +1,136 @@
+body, html {
+    height: 100vh;
+}
+.windows-container {
+    .header {
+        height: 10vh;
+        font: 13px sans-serif;
+        color: aqua;
+        .right-section {
+
+        }
+        .left-section {
+
+        }
+    }
+    .grid-system {
+        
+    }
+
+    .flower-box { grid-area: flower-box; background-color: hotpink; }
+    .skydrive { grid-area: skydrive; background-color: skyblue; }
+    .maps { grid-area: maps; background-color: purple; }
+    .photos { grid-area: photos; background-color: paleturquoise; }
+    .player { grid-area: player; background-color: tomato; }
+    .music { grid-area: music; background-color: orange; }
+    .game { grid-area: game; background-color: limegreen; }
+    .camera { grid-area: camera; background-color: purple; }
+    .news { grid-area: news; background-color: red; }
+    .calendar { grid-area: calendar; background-color: darkorchid; }
+    .internet-explorer { grid-area: internet-explorer; background-color: darkcyan; }
+    .help-tips { grid-area: help-tips; background-color: orangered; }
+    .food-drinks { grid-area: food-drinks; background-color: skyblue; }
+    .mail { grid-area: mail; background-color: mediumturquoise; }
+    .finance { grid-area: finance; background-color: limegreen; }
+    .sports { grid-area: sports; background-color: indigo; }
+    .travel { grid-area: travel; background-color:  darkcyan; }
+    .people { grid-area: people; background-color: tomato; }
+    .weather { grid-area: weather; background-color: lightslategrey; }
+    .store { grid-area: store; background-color: limegreen; }
+    .reading-list { grid-area: reading-list; background-color: red; }
+    .health-fitness { grid-area: health-fitness; background-color: purple; }
+    .grid-container {
+        display: grid;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 90vh;
+        padding-bottom: 10vh;
+        grid-template-areas: 
+        'flower-box flower-box flower-box flower-box skydrive skydrive maps maps photos photos player music . news news news news .'
+        'flower-box flower-box flower-box flower-box skydrive skydrive maps maps photos photos game camera . news news news news .'
+        'flower-box flower-box flower-box flower-box calendar calendar calendar calendar internet-explorer internet-explorer help-tips help-tips . food-drinks food-drinks food-drinks food-drinks .'
+        'flower-box flower-box flower-box flower-box calendar calendar calendar calendar internet-explorer internet-explorer help-tips help-tips . food-drinks food-drinks food-drinks food-drinks .'
+        'mail mail mail mail finance finance finance finance sports sports sports sports . travel travel travel travel .'
+        'mail mail mail mail finance finance finance finance sports sports sports sports . travel travel travel travel .'
+        'people people people people weather weather weather weather store store store store . reading-list reading-list health-fitness health-fitness .'
+        'people people people people weather weather weather weather store store store store .reading-list reading-list health-fitness health-fitness .';
+    }
+}
+.weather-container {
+    display: grid;
+    background-color: red;
+    grid-template-rows: 30% 40% 30%;
+    grid-template-columns: 25% 50% 25%;
+    height: 100%;
+    .left-container {
+        grid-column: 1 / 2;
+        grid-row: 1 / 4;
+        display: flex;
+        background-color: aqua;
+        flex-direction: column;
+        justify-content: space-between;
+        .date-section {
+            background-color: gray;
+            height: 30%;
+            display: flex;
+            flex-direction: column-reverse;
+            .content {
+                padding-left: 5vh;
+                padding-bottom: 5vh;
+                justify-content: flex-start;
+                text-align: left;
+            }
+        }
+        .location-section {
+            height: 30%;
+            background-color: hotpink;
+            .content {
+                padding-left: 5vh;
+                padding-top: 5vh;
+                text-align: left;
+            }
+        }
+    }
+    .mid-container {
+        grid-column: 2 / 3;
+        grid-row: 1 / 4;
+        display: flex;
+        background-color: brown;
+        .content {
+            align-content: center;
+            align-self: center;
+            width: 100%;
+        }
+    }
+    .right-container {
+        grid-column: 3 / 4;
+        grid-row: 1 / 4;
+        display: flex;
+        background-color: chartreuse;
+        flex-direction: column;
+        justify-content: space-between;
+        .temperature-section {
+            background-color: gray;
+            height: 70%;
+            display: flex;
+            .content {
+                align-content: center;
+                align-self: center;
+                text-align: center;
+                width: 100%;;
+            }
+        }
+        .status-section {
+            background-color: hotpink;
+            height: 30%;
+            .content {
+                padding-left: 5vh;
+                padding-top: 5vh;
+                text-align: left;
+                white-space: pre-line;
+            }
+        }
+    }
+}
