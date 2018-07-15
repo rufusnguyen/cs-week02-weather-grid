@@ -1,3 +1,5 @@
+![](cs-week02-weather-grid.png)
+
 # Tasks
 The following tasks must be completed:
 * [x] Responsive for any screen (desktop, laptop, tablet, phone)
