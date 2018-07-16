@@ -18,7 +18,7 @@
         </div>
         <div class="right-container">
             <div class="temperature-section">
-                <div class="content">{{ Math.round(currentWeather.temperature - 273) + ' do C' }}</div>
+                <div class="content">{{ Math.round(currentWeather.temperature - 273) + '̊ C' }}</div>
             </div>
             <div class="status-section">
                 <div class="content">
