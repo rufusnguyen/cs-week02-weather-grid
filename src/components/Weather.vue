@@ -13,7 +13,14 @@
         </div>
         <div class="mid-container">
             <div class="content">
-                <img v-bind:src=currentWeather.weatherStatusImage />
+                <!-- <img v-bind:src=currentWeather.weatherStatusImage /> -->
+                <rain />
+                <!-- <nav>
+                   <h2><router-link :to="'/city/London,UK'" replace>London, UK</router-link></h2>
+                   <h2><router-link :to="'/city/Villa Las Estrellas, Antarctic'" replace>Villa Las Estrellas, Antarctic</router-link></h2>
+                   <h2><router-link :to="'/city/Saigon, Vietnam'" replace>Saigon, Vietnam</router-link></h2>
+                   <h2><router-link :to="'/city/Novi Sad, Serbia'" replace>Novi Sad, Serbia</router-link></h2>
+                </nav> -->
             </div>
         </div>
         <div class="right-container">
@@ -29,7 +36,9 @@
     </div>
 </template>
 <script>
+import Rain from './weathers/Rain.vue'
 import WeatherMixin from '@/mixins/weather'
+
 const defaultWeather = 'stockholm,SE'
 const listOfCities = [
     'Hanoi,VN',
@@ -41,6 +50,9 @@ const listOfCities = [
 export default {
     name: 'Weather',
     mixins: [WeatherMixin],
+    components: {
+        'rain': Rain,
+    },
     data () {
         return {
             currentDate: new Date(),

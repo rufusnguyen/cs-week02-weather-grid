@@ -4,6 +4,8 @@ import Hello from '@/components/Hello'
 import Windows from '@/components/Windows'
 import Windows2 from '@/components/Windows2'
 import Weather from '@/components/Weather'
+import About from '@/pages/About'
+import NotFound from '@/pages/NotFound'
 
 Vue.use(Router)
 
@@ -28,6 +30,21 @@ export default new Router({
       path: '/weather',
       name: 'Weather',
       component: Weather
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
+    },
+    {
+      path: '/city/:cityName',
+      name: 'city',
+      component: Weather
+    },
+    {
+      path: '/not-found',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })

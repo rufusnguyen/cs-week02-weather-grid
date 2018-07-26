@@ -1,10 +1,3 @@
-const weatherStatuses = {
-    "Clear": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-    "Rain": "https://ssl.gstatic.com/onebox/weather/64/thunderstorms.png",
-    "Snow": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-    "Extreme": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
-};
-
 export default {
     methods: {
         loadCurrentWeather: (city) => {
@@ -23,7 +16,7 @@ export default {
                 weatherInfo.weather.forEach(weather => {
                     result.description += weather.description + '\n';
                 });
-                result.weatherStatusImage = weatherStatuses[weatherInfo.weather[0].main];
+                result.weatherStatusImage = `http://openweathermap.org/img/w/${weatherInfo.weather[0].icon}.png`;
             }
             return result;
         },
