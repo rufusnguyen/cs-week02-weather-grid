@@ -6,6 +6,12 @@ export default {
                     return response.json()
                 })
         },
+        loadCurrentWeathers: (cities) => {
+            return fetch(`http://api.openweathermap.org/data/2.5/group?id=${cities}&units=metric&appid=dfe15a41201d660911d013203832e676`)
+                .then(function (response) {
+                    return response.json()
+                })
+        },
         extractWeatherInfo: (weatherInfo) => {
             let result = {};
             if (weatherInfo) {

@@ -13,19 +13,15 @@
         </div>
         <div class="mid-container">
             <div class="content">
-                <!-- <img v-bind:src=currentWeather.weatherStatusImage /> -->
                 <rain />
-                <!-- <nav>
-                   <h2><router-link :to="'/city/London,UK'" replace>London, UK</router-link></h2>
-                   <h2><router-link :to="'/city/Villa Las Estrellas, Antarctic'" replace>Villa Las Estrellas, Antarctic</router-link></h2>
-                   <h2><router-link :to="'/city/Saigon, Vietnam'" replace>Saigon, Vietnam</router-link></h2>
-                   <h2><router-link :to="'/city/Novi Sad, Serbia'" replace>Novi Sad, Serbia</router-link></h2>
-                </nav> -->
+                <nav>
+                   <h2 v-for="city in listOfCities" v-bind:key="city.id"><router-link :to="`/city/${city.name}`" replace>{{city.name}}</router-link></h2>
+                </nav>
             </div>
         </div>
         <div class="right-container">
             <div class="temperature-section">
-                <div class="content">{{ Math.round(currentWeather.temperature - 273) + '̊ C' }}</div>
+                <div class="content">{{ currentWeather.temperature + '̊ C' }}</div>
             </div>
             <div class="status-section">
                 <div class="content">
@@ -41,10 +37,11 @@ import WeatherMixin from '@/mixins/weather'
 
 const defaultWeather = 'stockholm,SE'
 const listOfCities = [
-    'Hanoi,VN',
-    'Paris,FR',
-    'London,GB',
-    'Beijing,CN',
+    { name: 'Stockholm,SE', id: 2673730 },
+    { name: 'Hanoi,VN', id: 1581130 },
+    { name: 'Paris,FR', id: 2988507 },
+    { name: 'London,GB', id: 2643743 },
+    { name: 'Beijing,CN', id: 1816670 },
 ];
 
 export default {
@@ -63,26 +60,30 @@ export default {
                 cityKey: ''
             },
             availableWeathers: [],
+            listOfCities: listOfCities,
         }
-    },
-    methods: {
     },
     mounted() {
         if (this.currentWeather.name === '') {
-            this.loadCurrentWeather(defaultWeather).then((data) => {
-                this.currentWeather = this.extractWeatherInfo(data);
-                this.currentWeather.cityKey = defaultWeather;
-
-            });
-            listOfCities.forEach((city) => {
-                this.loadCurrentWeather(city).then((data) => {
-                    let weatherInfo = this.extractWeatherInfo(data);
-                    weatherInfo.cityKey = data;
-                    this.availableWeathers.push(weatherInfo);
-                });
+            const listOfCityId = listOfCities.map((value) => (value.id));
+            let self = this;
+            this.loadCurrentWeathers(listOfCityId.join()).then((cities) => {
+                if (cities.cnt > 0) {
+                    cities.list.forEach(city => {
+                        self.availableWeathers.push(self.extractWeatherInfo(city))
+                    });
+                }
+                self.currentWeather = self.availableWeathers[0];
             });
         }
     },
+    watch:{
+        $route (to, from){
+            const cityKey = listOfCities.findIndex((value) => (value.name === to.params.cityName))
+            this.currentWeather = this.availableWeathers[cityKey];
+            debugger;
+        }
+} 
 }
 </script>
 <style>

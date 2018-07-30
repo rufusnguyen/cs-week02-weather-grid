@@ -7,7 +7,7 @@
     <g id="Layer_4">
         <circle id="XMLID_98_" class="st1" cx="645.6" cy="367" r="50.4"/>
     </g>
-    <g id="Layer_5">
+    <g id="thunder">
         <polygon id="XMLID_1962_" class="st2" points="352,441.6 332.9,464.3 356.2,464.3 332.9,499.2 386.4,458.7 354.9,458.7 
             375.7,441.6 	"/>
     </g>
@@ -29,13 +29,11 @@
                 <line id="XMLID_84_" class="st3" x1="801.2" y1="404.9" x2="726.6" y2="600.3"/>
                 <line id="XMLID_83_" class="st3" x1="819.2" y1="404.9" x2="744.7" y2="600.3"/>
             </g>
-            <path id="small-cloud-sun" class="st4" d="M537.8,336.3c3.2-11,12.1-16.7,22.6-16.7c4,0,7.8,0.9,11.1,2.6c3.1,1.6,6.9,0.6,8.8-2.2
-                c6.1-8.8,16.3-14.3,27.8-14.3c17.5,0,31.9,12.3,33.6,30.6H537.8z"/>
             <g id="top-cloud">
                 <path id="XMLID_80_" class="st4" d="M443.6,216c-12.8,0-24.3,6-31.7,15.3c-3.8,4.8-10.2,7.1-16.2,5.7c-1.8-0.4-3.8-0.7-5.7-0.7
                     c-7.6,0-14.4,3.4-18.9,8.8c-3.8-3.3-8.7-5.4-14.1-5.4c-10.2,0-18.8,7.2-20.8,16.9h148C484.1,234.1,466,216,443.6,216z"/>
             </g>
-            <g id="right-rain">
+            <g id="left-rain">
                 <line id="XMLID_78_" class="st3" x1="271.6" y1="404.9" x2="197.1" y2="600.3"/>
                 <line id="XMLID_77_" class="st3" x1="254.7" y1="404.9" x2="192.4" y2="568.1"/>
                 <line id="XMLID_76_" class="st3" x1="289.7" y1="404.9" x2="215.1" y2="600.3"/>
@@ -60,7 +58,11 @@
                     c-7.3-2.7-15.2-4.3-23.4-4.3c-18.7,0-35.6,7.7-47.7,20.2c-8.4,8.7-20.5,12.6-32.4,10.4c-2.6-0.5-5.4-0.8-8.2-0.8
                     c-15.3,0-28.7,8.3-35.9,20.8H838.7z"/>
             </g>
-            <g id="XMLID_60_">
+            <g id="small-cloud-sun">
+                <path class="st4" d="M537.8,336.3c3.2-11,12.1-16.7,22.6-16.7c4,0,7.8,0.9,11.1,2.6c3.1,1.6,6.9,0.6,8.8-2.2
+                    c6.1-8.8,16.3-14.3,27.8-14.3c17.5,0,31.9,12.3,33.6,30.6H537.8z"/>
+            </g>
+            <g id="left-small-cloud">
                 <path id="XMLID_62_" class="st4" d="M398.6,387c-16.5,0-31.2,7.3-41.3,18.9c-4.8,5.6-12.2,8.5-19.4,7.3c-1.8-0.3-3.7-0.4-5.5-0.4
                     c-8.2,0-15.7,2.9-21.6,7.8c-3.8,3.1-8.8,4.5-13.5,3.1c-1.9-0.6-3.9-0.9-6-0.9c-11.5,0-21,7.8-23.1,18.8h185.3
                     C453.4,411.5,428.9,387,398.6,387z"/>
@@ -103,12 +105,77 @@
     </svg>
 </template>
 <script>
-import TweenLine from 'greensock'
+import {TimelineMax , TweenMax} from 'greensock'
 
 export default {
+    data() {
+        let mainTL = new TimelineMax({
+            paused: true
+        })
+        mainTL.add(this.leftCloudAnimation)
+              .add(this.rightCloudAnimation)
+              .add(this.rightRainAnimation)
+              .add(this.smallCloudSunAnimation)
+              .add(this.leftRainAnimation)
+              .add(this.leftSmallCloudAnimation)
+              .add(this.leftBigCloudAnimation)
+              .add(this.thunderAnimation)
+        mainTL.play()
+        return {
+            mainTL: mainTL,
+        }
+    },
     methods: {
-        
-    }
+        leftCloudAnimation() {
+            let mayBay = new TimelineMax({repeat: -1})
+            mayBay.from('#top-cloud', 2, { x:118 },'-=0')
+                  .to('#top-cloud', 2, { x: 118},'+=0')
+            return mayBay
+        },
+        rightCloudAnimation() {
+            let rightClouds = new TimelineMax({repeat: -1 })
+            rightClouds.from('#right-big-cloud', 2, { x: -120 }, '-=0')
+                        .to('#right-big-cloud', 2, { x: -120 }, '+=0')
+            return rightClouds;
+        },
+        rightRainAnimation() {
+            let rightRain = new TimelineMax({repeat: -1 })
+            rightRain.from('#right-rain', 2, { x: -120 }, '-=0')
+                     .to('#right-rain', 2, { x: -120 }, '+=0')
+                     .from('#right-rain line', 1, {opacity:0.8}, 0.25)
+                     .to('#right-rain line', 1, {opacity:1}, 0.25)
+            return rightRain;
+        },
+        smallCloudSunAnimation() {
+            let smallCloudSun = new TimelineMax({repeat: -1 })
+            smallCloudSun.from('#small-cloud-sun', 3, { x: 50 }, '-=0')
+                        .to('#small-cloud-sun', 3, { x: 50 }, '+=0')
+            return smallCloudSun;
+        },
+        leftRainAnimation() {
+            let leftRainAnimation = new TimelineMax({ repeat: -1})
+            leftRainAnimation.from('#left-rain', 3, { x: -50 }, '-=0')
+                        .to('#left-rain', 3, { x: -50 }, '+=0')
+            return leftRainAnimation
+        },
+        leftSmallCloudAnimation() {
+            let leftSmallCloudAnimation = new TimelineMax({ repeat: -1})
+            leftSmallCloudAnimation.from('#left-small-cloud', 3, { x: -20 }, '-=0')
+                        .to('#left-small-cloud', 3, { x: -20 }, '+=0')
+            return leftSmallCloudAnimation
+        },
+        leftBigCloudAnimation() {
+            let leftBigCloudAnimation = new TimelineMax({ repeat: -1 })
+            leftBigCloudAnimation.from('#left-big-cloud', 3, { x: -50 }, '-=0')
+                        .to('#left-big-cloud', 3, { x: -50 }, '+=0')
+            return leftBigCloudAnimation
+        },
+        thunderAnimation() {
+            let thunderAnimation = new TimelineMax({ repeat: -1 })
+            thunderAnimation.to('#thunder', 3, { scale: 2, ease:Power2.easeOut, yoyoEase:Power2.easeOut })
+            return thunderAnimation
+        },
+    },
 }
 </script>
 
